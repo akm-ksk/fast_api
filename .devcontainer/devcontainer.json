@@ -1,0 +1,5 @@
+{
+  "name": "FastAPI",
+  "dockerFile": "Dockerfile",
+  "extensions": ["ms-python.python"]
+}
