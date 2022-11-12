@@ -7,7 +7,7 @@ from decouple import config
 JWT_KEY = config('JWT_KEY')
 
 
-class AuthJwtCsrf():
+class AuthJwtCsrf:
     pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
     secret_key = JWT_KEY
 
@@ -55,7 +55,7 @@ class AuthJwtCsrf():
             return HTTPException(status_code=401, detail="JWT is not valid")
 
     # JWTトークンを検証するメソッド
-    def verify_jwt(self, request) -> str | HTTPException:
+    def verify_jwt(self, request) -> (str, HTTPException):
 
         # リクエストのクッキーを取得しJWTトークンを取得する
         token = request.cookies.get("access_token")
