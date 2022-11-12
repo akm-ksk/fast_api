@@ -38,7 +38,7 @@ class AuthJwtCsrf:
         )
 
     # JWTをデコードする
-    def decode_jwt(self, token) -> (str, HTTPException):
+    def decode_jwt(self, token) -> str:
         try:
             # デコード実行
             payload = jwt.decode(token, self.secret_key, algorithms=['HS256'])
@@ -48,20 +48,20 @@ class AuthJwtCsrf:
         # JWTが執行している場合
         except jwt.ExpiredSignatureError:
 
-            return HTTPException(status_code=401, detail="The JWT has expired")
+            raise HTTPException(status_code=401, detail="The JWT has expired")
 
         # JWTに準拠していないトークンやからの値を渡された場合のエラー
         except jwt.InvalidTokenError:
 
-            return HTTPException(status_code=401, detail="JWT is not valid")
+            raise HTTPException(status_code=401, detail="JWT is not valid")
 
     # JWTトークンを検証するメソッド
-    def verify_jwt(self, request) -> (str, HTTPException):
+    def verify_jwt(self, request) -> str:
 
         # リクエストのクッキーを取得しJWTトークンを取得する
         token = request.cookies.get("access_token")
         if not token:
-            return HTTPException(status_code=404, detail='No JWT exist : may not set yet or deleted')
+            raise HTTPException(status_code=404, detail='No JWT exist : may not set yet or deleted')
 
         # tokenからJWTを取り出す
         _, _, value = token.partition(" ")
