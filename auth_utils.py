@@ -3,6 +3,7 @@ from fastapi import HTTPException
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from decouple import config
+from typing import Tuple
 
 JWT_KEY = config('JWT_KEY')
 
@@ -71,7 +72,7 @@ class AuthJwtCsrf:
         return subject
 
     # JWTの検証と更新 戻り値 更新されたJWTとサブジェクト
-    def verify_update_jwt(self, request) -> tuple[str, str]:
+    def verify_update_jwt(self, request) -> Tuple[str, str]:
         # JWTトークンを検証
         subject = self.verify_jwt(request)
 
