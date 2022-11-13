@@ -11,7 +11,7 @@ app.include_router(rout_todo.router)
 app.include_router(rout_auth.router)
 
 # ホワイトリスト
-origins = ['http://localhost:3000/']
+origins = ['http://localhost:3000']
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,  # ホワイトリスト
