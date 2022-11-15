@@ -18,6 +18,7 @@ app.add_middleware(
     allow_credentials=True,  # クッキーの設定
     allow_methods=["*"],  # リクエストを許可するメソッド
     allow_headers=["*"],  # 許可するHTTPリクエストヘッダー
+    expose_headers=["*"],
 )
 
 
