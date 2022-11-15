@@ -85,7 +85,7 @@ class AuthJwtCsrf:
     def verify_csrf_update_jwt(self, request, csrf_protect, headers) -> str:
 
         # リクエストヘッダーの中からCSRFトークンを取り出す
-        csrf_token = csrf_protect.get_csrf_from_header(headers)
+        csrf_token = csrf_protect.get_csrf_from_headers(headers)
 
         # CSRFをヴァリデートする
         csrf_protect.validate_csrf(csrf_token)
